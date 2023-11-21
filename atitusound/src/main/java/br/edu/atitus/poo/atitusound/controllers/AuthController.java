@@ -46,7 +46,7 @@ public class AuthController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(entidade);
 	}
 	
-	@PostMapping("/auth/signin")
+	@PostMapping("/signin")
 	public ResponseEntity<String> PostSignin(@RequestBody SigninDTO signin) {
 		try {
 			var auth = authConfig.getAuthenticationManager().authenticate(

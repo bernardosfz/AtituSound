@@ -2,6 +2,8 @@ package br.edu.atitus.poo.atitusound.entities;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,7 +17,8 @@ public class GenericEntity {
 	private UUID uuid;
 	
 	private String name;
-
+	
+	@JsonIgnore
 	public UUID getUuid() {
 		return uuid;
 	}
