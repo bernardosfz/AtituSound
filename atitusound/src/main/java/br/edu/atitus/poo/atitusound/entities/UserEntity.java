@@ -1,5 +1,7 @@
 package br.edu.atitus.poo.atitusound.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -22,6 +24,8 @@ public class UserEntity extends GenericEntity{
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
