@@ -12,7 +12,7 @@ import br.edu.atitus.poo.atitusound.repositories.UserRepository;
 import br.edu.atitus.poo.atitusound.services.UserService;
 
 @Service
-public class UserServiceImpl implements UserService, UserDetailsService{
+public class UserServiceImpl implements UserService{
 
 	private final UserRepository repository;
 	private final PasswordEncoder passwordEncoder;
