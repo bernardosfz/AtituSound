@@ -1,5 +1,8 @@
 package br.edu.atitus.poo.atitusound.servicesimpl;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +12,7 @@ import br.edu.atitus.poo.atitusound.repositories.UserRepository;
 import br.edu.atitus.poo.atitusound.services.UserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService{
 
 	private final UserRepository repository;
 	private final PasswordEncoder passwordEncoder;
@@ -39,5 +42,12 @@ public class UserServiceImpl implements UserService {
 				throw new Exception("Já existe um usuário com este username");
 		}
 		entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		var user = repository.findByUsername(username)
+				.orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
+		return user;
 	}
 }
